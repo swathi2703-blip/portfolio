@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swathi | Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #1a1a2e, #16213e, #0f3460);
+      color: #f5f5f5;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 8%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10,10,25,0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #00e0ff;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background: #00e0ff;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding-top: 100px;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero-content h2 {
+      font-size: 2.5rem;
+      color: #00e0ff;
+    }
+
+    .hero-content h3 {
+      font-weight: 400;
+      color: #d1d1d1;
+      margin: 10px 0;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .hero img {
+      flex: 1;
+      min-width: 250px;
+      max-width: 350px;
+      border-radius: 50%;
+      border: 5px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 25px rgba(0,224,255,0.4);
+      animation: fadeIn 2s ease;
+    }
+
+    .social-links {
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 8px;
+      font-size: 1.4rem;
+      color: #00e0ff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 15px #00e0ff;
+      transform: scale(1.1);
+    }
+
+    section {
+      padding: 80px 15%;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00e0ff;
+    }
+
+    /* Skills */
+    .skills span {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.15);
+      color: #00e0ff;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .skills span:hover {
+      background: #00e0ff;
+      color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #00e0ff;
+    }
+
+    /* Popup (Modal) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00e0ff;
+    }
+
+    .close {
+      position: absolute;
+      top: 40px;
+      right: 60px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .project {
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px #00e0ff;
+    }
+
+    .project h3 a {
+      color: #00e0ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .project h3 a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #00e0ff;
+    }
+
+    footer {
+      background: rgba(255,255,255,0.05);
+      text-align: center;
+      padding: 25px;
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero img {
+        margin-top: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>K. Swathi</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <img src="yourprofile.jpg" alt="K. Swathi">
+    <div class="hero-content">
+      <h2>Hi, I'm K. Swathi 👋</h2>
+      <h3>Java & Python Developer | UI Enthusiast</h3>
+      <p>I build creative, efficient, and elegant applications using modern technologies. Passionate about writing clean code and designing smooth user experiences.</p>
+      <div class="social-links">
+        <a href="mailto:kswathi@example.com">📧</a>
+        <a href="https://github.com/kswathi">💻</a>
+        <a href="https://linkedin.com/in/kswathi">🔗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <h2>Skills & Certificates</h2>
+    <span onclick="showCert('java.webp')">Java</span>
+    <span onclick="showCert('python.webp')">Python</span>
+    <span onclick="showCert('html.jpg')">HTML</span>
+    <span onclick="showCert('css.jpg')">CSS</span>
+    <span onclick="showCert('sql.jpg')">SQL</span>
+    <span onclick="showCert('dsa.webp')">Data Structures</span>
+  </section>
+
+  <!-- Popup Modal -->
+  <div id="certModal" class="modal">
+    <span class="close" onclick="closeCert()">&times;</span>
+    <img id="certImg" src="" alt="Certificate">
+  </div>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <h3><a href="file:///C:/Users/kswathi/Documents/UniversityClinicTracker" target="_blank">🏥 University Clinic Tracker</a></h3>
+        <p>Tracks and verifies student health records efficiently.</p>
+        <p><a href="https://github.com/swathi2703-blip/OOPS-JAVA" target="_blank">🔗 GitHub Repo</a></p>
+      </div>
+      <div class="project">
+        <h3><a href="file:///C:/Users/kswathi/Documents/MazePathfinder" target="_blank">🧭 Maze Pathfinder (BFS)</a></h3>
+        <p>AI visualization tool for shortest pathfinding using BFS.</p>
+        <p><a href="https://github.com/swathi2703-blip/University-Clinic-Tracker-Verifier" target="_blank">🔗 GitHub Repo</a></p>
+      </div>
+      <div class="project">
+        <h3><a href="file:///C:/Users/kswathi/Documents/SmartLibrarySystem" target="_blank">📚 Smart Library System</a></h3>
+        <p>Library management app built with Java & MySQL.</p>
+        <p><a href="https://github.com/swathi2703-blip/Email-spam-detector" target="_blank">🔗 GitHub Repo</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 Email: <a href="mailto:k.swathi2703@gmail.com">kswathi@example.com</a></p>
+    <p>💻 GitHub: <a href="https://github.com/swathi2703-blip">github.com/kswathi</a></p>
+    <p>🔗 LinkedIn: <a href="https://www.linkedin.com/in/swathikannabouina/">linkedin.com/in/kswathi</a></p>
+  </section>
+
+  <footer>
+    © 2025 K. Swathi | Designed with 💙 by Swathi
+  </footer>
+
+  <script>
+    function showCert(imagePath) {
+      document.getElementById("certImg").src = imagePath;
+      document.getElementById("certModal").style.display = "flex";
+    }
+
+    function closeCert() {
+      document.getElementById("certModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
